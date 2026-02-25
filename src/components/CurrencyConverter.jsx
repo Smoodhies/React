@@ -1,76 +1,64 @@
 import React from "react";
-import { useState, useEffect, useCallback } from "react";
-import "../App.css";
+
 /*
-
-exportable components with input editable and TO to FROM and option and selection dynamically
-
-also fetch api https://latest.currency-api.pages.dev/v1/currencies/eur.json
-
+https://latest.currency-api.pages.dev/v1/currencies/eur.json
 */
 
 function CurrencyConverter({
-  label = "From",
-  amount,
-  setAmount = () => {},
-  optionchanged = () => {},
+  label,
   options = [],
-  selectedoption = "USD",
-  inputdisable = false,
-  optiondisable = false,
+  amount,
+  selectCurrency = "usd",
+  optionChanged,
+  inputDisabled = false,
+  amountChanged,
 }) {
-  // console.log("label", label);
-  // console.log("amount", amount);
-  // console.log("setamount", setAmount);
-  // console.log("options", options);
-  // console.log("optionchanged", optionchanged);
-  console.log("selectedoption", selectedoption);
-
-  //  const AmountChanged = (e)=>{
-  //   setAmount(Number(e.target.value))
-  //  }
-
-  //  const updatedOption = (e)=>{
-  //   optionchnaged(e.target.value);
-  //  }
+  // console.log("this investigation of the functions optionchanged ",optionChanged)
 
   return (
-    <div className="bg-cyan-400 w-full flex flex-wrap align-middle justify-between p-2 rounded-lg">
-      <label> {label} </label>
-      <div className=" bg-emerald-400 w-full align-middle ">
+    <div className="className={`bg-white p-3 rounded-lg text-sm flex ${className}`}">
+      <div className="w-1/2">
+        <label htmlFor={label} className="text-black/40 mb-2 inline-block">
+          {label}
+        </label>
         <input
+          // disabled={inputDisabled}
+          // defaultValue={1}
           value={amount}
-          type="number"
-          placeholder="Enter the Amount"
-          className="outline-black"
+          id={label}
+          type="text"
+          min={0}
+          className="outline-none w-full bg-transparent py-1.5"
+          required={true}
           onChange={(e) => {
-            setAmount && setAmount(Number(e.target.value));
+            console.log("this investigation of the functions amount", amount);
+            console.log(
+              "this investigation of the functions amountchanged ",
+              amountChanged,
+            );
+            amountChanged && amountChanged(Number(e.target.value));
           }}
-          disabled={inputdisable}
-        />
+        ></input>
       </div>
 
-      <div>
-        currencys:
+      <div className="w-1/2 flex flex-wrap justify-end text-right">
         <select
-          className="rounded-lg ml-2 w-[50px] flex px-1 py-1 bg-amber-600 cursor-pointer outline-none"
-          value={selectedoption}
+          // defaultValue={selectCurrency}
+          value={selectCurrency}
+          className="rounded-lg px-1 py-1 bg-gray-100 cursor-pointer outline-none"
           onChange={(e) => {
-            console.log("select tag value", e.target.value);
-            optionchanged && optionchanged(e.target.value);
+            console.log("this investigation of the functions option", option);
+            console.log(
+              "this investigation of the functions optionchanged ",
+              optionChanged,
+            );
+            optionChanged && optionChanged(e.target.value);
           }}
         >
-          {options.map((optn, index) => {
-            // {console.log(index)}
+          {options.map((val, index) => {
             return (
-              <option
-                className=" text-amber-100 w-[50px]"
-                key={index}
-                value={optn}
-              >
-                {/* {console.log("options tag value", optn)} */}
-                {/* {optn ? optn.toUpperCase() : selectedoption.toUpperCase} */}
-                {optn.toUpperCase()}
+              <option key={index} value={val}>
+                {val?.toUpperCase()}
               </option>
             );
           })}
