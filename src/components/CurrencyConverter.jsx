@@ -14,6 +14,11 @@ function CurrencyConverter({
   amountChanged,
 }) {
   // console.log("this investigation of the functions optionchanged ",optionChanged)
+  // console.log("this investigation of the functions optionchanged ",optionChanged)
+  // console.log(
+  //   "this investigation of the functions amountChanged ",
+  //   amountChanged,
+  // );
 
   return (
     <div className="className={`bg-white p-3 rounded-lg text-sm flex ${className}`}">
@@ -30,12 +35,15 @@ function CurrencyConverter({
           min={0}
           className="outline-none w-full bg-transparent py-1.5"
           required={true}
+          disabled={inputDisabled}
           onChange={(e) => {
-            console.log("this investigation of the functions amount", amount);
-            console.log(
-              "this investigation of the functions amountchanged ",
-              amountChanged,
-            );
+            // console.log("this investigation of the functions amount", amount);
+            // console.log(
+            //   "this investigation of the functions amountchanged ",
+            //   amountChanged,
+            // );
+
+            // cl;
             amountChanged && amountChanged(Number(e.target.value));
           }}
         ></input>
@@ -47,11 +55,12 @@ function CurrencyConverter({
           value={selectCurrency}
           className="rounded-lg px-1 py-1 bg-gray-100 cursor-pointer outline-none"
           onChange={(e) => {
-            console.log("this investigation of the functions option", option);
-            console.log(
-              "this investigation of the functions optionchanged ",
-              optionChanged,
-            );
+            // console.log("this investigation of the functions option", option);
+            // console.log(
+            //   "this investigation of the functions optionchanged ",
+            //   optionChanged,
+            // );
+
             optionChanged && optionChanged(e.target.value);
           }}
         >

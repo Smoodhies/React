@@ -20,10 +20,10 @@ function App() {
   const [to, setTo] = useState("inr");
   const [convertedAmount, setConvertedamount] = useState(0);
 
-  console.log("from app amount", amount);
-  console.log("from app setamount", setAmount);
-  console.log("from app convertedamount", convertedAmount);
-  console.log("from app setconverted", setConvertedamount);
+  // console.log("from app amount", amount);
+  // console.log("from app setamount", setAmount);
+  // console.log("from app convertedamount", convertedAmount);
+  // console.log("from app setconverted", setConvertedamount);
 
   const apiCall = apicall(from); // grab the all values from api itself
 
@@ -40,19 +40,19 @@ function App() {
     setAmount(convertedAmount);
     setConvertedamount(amount);
 
-    console.log(amount, "  amount ", convertedAmount);
-    console.log(to, "  from to ", from);
+    // console.log(amount, "  amount ", convertedAmount);
+    // console.log(to, "  from to ", from);
   };
 
   let calculate = (e) => {
-    console.log("\n calculated \n from app amount", amount);
-    console.log("from app setamount", setAmount);
-    console.log("from app convertedamount", convertedAmount);
-    console.log("from app setconverted", setConvertedamount);
+    // console.log("\n calculated \n from app amount", amount);
+    // console.log("from app setamount", setAmount);
+    // console.log("from app convertedamount", convertedAmount);
+    // console.log("from app setconverted", setConvertedamount);
 
     setConvertedamount(amount * apiCall[to]);
-    console.log("amount", amount);
-    console.log("calculated amount", convertedAmount);
+    // console.log("amount", amount);
+    // console.log("calculated amount", convertedAmount);
   };
 
   return (
@@ -68,9 +68,9 @@ function App() {
           label={from}
           options={keys}
           amount={amount} // this holds the select amount value via amount hook
-          amountChanged={(amount) => {
-            // this optionChanged higher ord func by help to update the variable from hook setAmount hook
-            setAmount(amount);
+          amountChanged={(val) => {
+
+            setAmount(val);
           }}
           selectCurrency={from} // this holds the select currency value via from hook
           optionChanged={(currency) => {
