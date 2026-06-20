@@ -7,6 +7,8 @@ import TodoItem from "./components/TodoItem";
 function App() {
   const [todos, setTodos] = useState([]);
 
+  console.log("new todos message from inside app", ...todos);
+
   const addTodo = (todos) => {
     setTodos((prevTodos) => {
       return [{ id: Date.now(), ...todos }, ...prevTodos];
@@ -14,17 +16,16 @@ function App() {
   };
 
   const updateTodo = (id, todos) => {
-    console.log("updatedtodo from app id and todo", id, todos);
-    setTodos((prevTodos) => {
-      return prevTodos.map(
-        (eachPrevTodo) => (eachPrevTodo?.id === id ? todos : eachPrevTodo),
-
-        // {
-        //   // return prevTodos?.id === id ? { text: todos?.text, ...eachTodo } : "";
-        //   return
-        // }
-      );
-    });
+    console.log("todos from updateTodo", todos);
+    setTodos((TodosList) =>
+      TodosList.map(
+        (eachTodo) => (
+          console.log("eachtodo ", eachTodo),
+          console.log(eachTodo.id == id),
+          eachTodo.id == id ? todos : eachTodo
+        ),
+      ),
+    );
   };
 
   const deleteTodo = (id) => {
@@ -34,6 +35,7 @@ function App() {
   };
 
   const StatusTodo = (id) => {
+    console.log("statusTodo",id)
     setTodos((prev) =>
       prev.map((prevTodos) =>
         prevTodos.id == id

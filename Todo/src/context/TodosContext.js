@@ -4,7 +4,7 @@ const Todo = createContext({
   todos: [
     {
       id: 1,
-      text: "nothing is there",
+      todo: "nothing is there",
       completed: false,
     },
   ],

@@ -4,47 +4,21 @@ import useTodos from "../context/TodosContext";
 function TodoItem({ todos }) {
   console.log("todos from todoitem", todos);
 
-  const [toggleCompleted, setToggleCompleted] = useState(false);
-  // console.log("toggle complete from todoitem", toggleCompleted)
-
   const [todoMsg, setTodoMsg] = useState(todos.todo);
 
-  console.log("todosmdg from todoitem", todoMsg);
-
   const [isTodoEditable, setIsTodoEditable] = useState(false);
-  // console.log("todos from todoitem", isTodoEditable);
 
-  const { addTodo, deleteTodo, StatusTodo, updateTodo } = useTodos();
+  const { deleteTodo, StatusTodo, updateTodo } = useTodos();
 
-  // console.log("add todo from context but in tododitem we call it ",addTodo)
-  // console.log("delete todo from context but in tododitem we call it ",deleteTodo)
-  // console.log(
-  //   "StatusTodo todo from context but in tododitem we call it ",
-  //   StatusTodo,
-  // );
-
-  console.log(
-    "updateTodo todo from context but in tododitem we call it ",
-    updateTodo,
-  );
-  
   const editTodo = () => {
-    console.log("togglecomplete",toggleCompleted)
     setToggleCompleted(!toggleCompleted);
-    console.log("edit todo value", todos);
-
-    updateTodo(todos.id, todoMsg);
+    updateTodo(todos.id, { ...todos, todo: todoMsg });
+    setIsTodoEditable(false);
   };
 
-  //  setTodoMsg((prev)=>{
-  //   setIsTodoEditable(true)
-  //    updateTodo(todos.id, todos)
-  //  }
-  //   )
-
-  // setToggleCompleted(StatusTodo(todos.id, todos));
-
-  // setIsTodoEditable(!isTodoEditable);
+  const setToggleCompleted = () => {
+    StatusTodo(todos.id);
+  };
 
   return (
     <div
@@ -58,17 +32,14 @@ function TodoItem({ todos }) {
         checked={todos.completed}
         onChange={setToggleCompleted}
       />
+
       <input
         type="text"
         className={`border outline-none w-full bg-transparent rounded-lg ${
           isTodoEditable ? "border-black/10 px-2" : "border-transparent"
         } ${todos.completed ? "line-through" : ""}`}
         value={todoMsg}
-        onChange={(e) => {
-          console.log("todomsg from input ", todoMsg);
-          console.log("target value", e.target.value);
-          return setTodoMsg( e.target.value );
-        }}
+        onChange={(e) => setTodoMsg(e.target.value)}
         readOnly={!isTodoEditable}
       />
       {/* Edit, Save Button */}
